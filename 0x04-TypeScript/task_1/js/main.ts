@@ -30,7 +30,7 @@ interface printTeacherFunction {
   (teacher: { firstName: string; lastName: string }): string;
 }
 
-// Implement the function using the `function` keyword
+// Implement the function using `function` keyword
 function printTeacher({ firstName, lastName }: { firstName: string; lastName: string }): string {
   return `${firstName.charAt(0)}. ${lastName}`;
 }
