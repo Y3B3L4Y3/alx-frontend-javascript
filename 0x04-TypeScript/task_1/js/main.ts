@@ -37,6 +37,8 @@ function printTeacher({ firstName, lastName }: { firstName: string; lastName: st
 
 // Example usage
 console.log(printTeacher({ firstName: "John", lastName: "Doe" })); // Output: J. Doe
+
+
 // Interface for the constructor
 interface StudentClassConstructor {
   firstName: string;
@@ -51,8 +53,8 @@ interface StudentClassInterface {
   displayName(): string;
 }
 
-// Implement the class
-class StudentClass implements StudentClassInterface {
+// Class declaration exactly as ALX expects
+class StudentClass {
   firstName: string;
   lastName: string;
 
