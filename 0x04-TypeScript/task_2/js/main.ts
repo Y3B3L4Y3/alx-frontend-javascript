@@ -57,47 +57,10 @@ console.log(createEmployee(200));    // Teacher
 console.log(createEmployee(1000));   // Director
 console.log(createEmployee("$500")); // Director
 
-
-
-// Interfaces for Employees
-export interface Director {
-  firstName: string;
-  lastName: string;
-  workDirectorTasks(): string;
-}
-
-export interface Teacher {
-  firstName: string;
-  lastName: string;
-  workTeacherTasks(): string;
-}
-
-// Function to create employee
-export function createEmployee(salary: number): Director | Teacher {
-  if (salary < 500) {
-    return {
-      firstName: 'John',
-      lastName: 'Doe',
-      workTeacherTasks() {
-        return 'Getting to work';
-      }
-    };
-  }
-  return {
-    firstName: 'Jane',
-    lastName: 'Smith',
-    workDirectorTasks() {
-      return 'Getting to director tasks';
-    }
-  };
-}
-
-// Type predicate
 export function isDirector(employee: Director | Teacher): employee is Director {
-  return (employee as Director).workDirectorTasks !== undefined;
+  return employee instanceof Director;
 }
 
-// executeWork function
 export function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
@@ -105,6 +68,6 @@ export function executeWork(employee: Director | Teacher): string {
   return employee.workTeacherTasks();
 }
 
-// Test outputs
-console.log(executeWork(createEmployee(200)));
-console.log(executeWork(createEmployee(1000)));
+// Testing (matches expected results)
+console.log(executeWork(createEmployee(200)));   // Getting to work
+console.log(executeWork(createEmployee(1000)));  // Getting to director tasks
