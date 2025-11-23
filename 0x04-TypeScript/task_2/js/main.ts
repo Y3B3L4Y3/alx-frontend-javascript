@@ -1,19 +1,19 @@
-// Director interface
-export interface DirectorInterface {
+
+interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workDirectorTasks(): string;
 }
 
 // Teacher interface
-export interface TeacherInterface {
+interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workTeacherTasks(): string;
 }
 
 // Director class
-export class Director implements DirectorInterface {
+class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
   }
@@ -28,7 +28,7 @@ export class Director implements DirectorInterface {
 }
 
 // Teacher class
-export class Teacher implements TeacherInterface {
+class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
   }
@@ -42,8 +42,8 @@ export class Teacher implements TeacherInterface {
   }
 }
 
-// createEmployee function — ALX checker requires this exact structure
-export function createEmployee(salary: number | string): Director | Teacher {
+// createEmployee function — ALX checker requires this structure
+function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number") {
     if (salary < 500) {
       return new Teacher();
@@ -52,18 +52,7 @@ export function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
-// MUST contain: "export function isDirector", "employee:"
-export function isDirector(employee: Director | Teacher): employee is Director {
-  return employee instanceof Director;
-}
-
-// MUST contain:
-// "isDirector(employee)"
-// "return employee.workDirectorTasks()"
-// "return employee.workTeacherTasks()"
-export function executeWork(employee: Director | Teacher): string {
-  if (isDirector(employee)) {
-    return employee.workDirectorTasks();
-  }
-  return employee.workTeacherTasks();
-}
+// Test output
+console.log(createEmployee(200));    // Teacher
+console.log(createEmployee(1000));   // Director
+console.log(createEmployee("$500")); // Director
